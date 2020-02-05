@@ -54,7 +54,7 @@ jobs:
           cd friendlywrt-h3
           cd .repo/manifests
           rm -f ./h3.xml
-          wget https://raw.githubusercontent.com/picaoul/NanoPi-R1S-Build-By-Actions/master/source_xml/h3_19.07.xml
+          wget https://raw.githubusercontent.com/picasoul/NanoPi-R1S-Build-By-Actions/master/source_xml/h3_19.07.xml
           cp h3_19.07.xml h3.xml
           rm -rf ./h3_19.07.xml
           repo sync -c  --no-clone-bundle
