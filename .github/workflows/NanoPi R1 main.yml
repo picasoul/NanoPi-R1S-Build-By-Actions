@@ -10,10 +10,10 @@
 
 name: NanoPi-R1 OpenWrt 19.07 Build
 
-# on:
-#   push:
-#     branches: 
-#       - master
+on:
+  push:
+    branches: 
+      - master
   # schedule:
   #   - cron: 0 20 * * *
   # release:
@@ -88,7 +88,7 @@ jobs:
         run: |
           cd friendlywrt-h3/friendlywrt
           rm -f ./.config*
-          wget https://raw.githubusercontent.com/skytotwo/NanoPi-R1S-Build-By-Actions/master/r1s-h3-config
+          wget https://raw.githubusercontent.com/picasoul/NanoPi-R1S-Build-By-Actions/master/r1s-h3-config
           cp r1s-h3-config .config
       
       - name: Download package
@@ -116,5 +116,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R1S H3 v19.07
+          name: FriendlyWrt_NanoPi-R1 v19.07
           path: ./artifact/
