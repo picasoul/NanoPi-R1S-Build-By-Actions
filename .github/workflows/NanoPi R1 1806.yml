@@ -7,7 +7,7 @@
 #
 # Write by Jolly 2019/12/7
 
-name: NanoPi-R1 V2
+name: NanoPi-R1 V3
 
 on:
   push:
@@ -61,17 +61,18 @@ jobs:
           repo sync -c  --no-clone-bundle
       
       - name: Merge UpStearm OpenWrt
-        run: |
+        run: 
           cd friendlywrt-h3
-          rm -rf friendlywrt && mkdir friendlywrt && cd friendlywrt
+          cd .repo/manifests
+          rm -f ./h3.xml
           git init
           git config user.email picasoul@126.com
           git config user.name picasoul
-          git remote add origin https://github.com/friendlyarm/friendlywrt.git
-          git remote add upstream https://github.com/openwrt/openwrt.git
-          git pull origin master-v18.06.1
-          git pull upstream openwrt-18.06 --no-edit
-      
+          wget https://raw.githubusercontent.com/picasoul/NanoPi-R1S-Build-By-Actions/master/source_xml/h3_19.07.xml
+          cp h3_19.07.xml h3.xml
+          rm -rf ./h3_19.07.xml
+          repo sync -c  --no-clone-bundle
+          
       - name: Merge LEDE
         run: |
           cd friendlywrt-h3
