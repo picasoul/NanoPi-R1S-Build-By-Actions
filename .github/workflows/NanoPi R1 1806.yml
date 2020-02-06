@@ -114,7 +114,7 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd friendlywrt-h3
-          ./build.sh nanopi_r1.mk
+          ./build.sh nanopi_r1s.mk
       
       - name: Zip Files
         run: |
@@ -128,5 +128,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R1
+          name: FriendlyWrt_NanoPi-R1S
           path: ./artifact/
