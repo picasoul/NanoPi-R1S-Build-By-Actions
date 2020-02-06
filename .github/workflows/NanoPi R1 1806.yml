@@ -57,21 +57,20 @@ jobs:
         run: |
           mkdir friendlywrt-h3
           cd friendlywrt-h3
-          repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master -m h3.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
-          repo sync -c  --no-clone-bundle
-      
+          repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v18.06.1 -m h3.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
+          repo sync -c --no-clone-bundle
+               
       - name: Merge UpStearm OpenWrt
         run: |
           cd friendlywrt-h3
-          cd .repo/manifests
-          rm -f ./h3.xml
+          rm -rf friendlywrt && mkdir friendlywrt && cd friendlywrt
           git init
           git config user.email picasoul@126.com
           git config user.name picasoul
-          wget https://raw.githubusercontent.com/picasoul/NanoPi-R1S-Build-By-Actions/master/source_xml/h3_19.07.xml
-          cp h3_19.07.xml h3.xml
-          rm -rf ./h3_19.07.xml
-          repo sync -c  --no-clone-bundle
+          git remote add origin https://github.com/friendlyarm/friendlywrt.git
+          git remote add upstream https://github.com/openwrt/openwrt.git
+          git pull origin master-v18.06.1
+          git pull upstream openwrt-18.06 --no-edit
       
       - name: Merge LEDE
         run: |
@@ -129,5 +128,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R1 H3
+          name: FriendlyWrt_NanoPi-R1
           path: ./artifact/
