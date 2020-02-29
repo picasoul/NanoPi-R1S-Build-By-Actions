@@ -9,9 +9,9 @@
 
 name: NanoPi-R1 V3
 
-on:
-  push:
-    branches: 
+#on:
+#  push:
+#    branches: 
       - master
   # schedule:
   #   - cron: 0 20 * * *
